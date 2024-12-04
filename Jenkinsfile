@@ -8,12 +8,24 @@ pipeline{
         }
         stage('Build') {
             steps {
-                bat 'mvn clean install'
+                script {
+                    if (isUnix()) {
+                        sh 'mvn clean install'
+                    } else {
+                        bat 'mvn clean install'
+                    }
+                }
             }
         }
         stage('test') {
             steps {
-                bat 'mvn test'
+                script {
+                    if (isUnix()) {
+                        sh 'test'
+                    } else {
+                        bat 'test'
+                    }
+                }
             }
         }
     }
