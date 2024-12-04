@@ -22,8 +22,6 @@ pipeline{
                 script {
                     if (isUnix()) {
                         sh 'test'
-                    } else {
-                        bat 'test'
                     }
                 }
             }
